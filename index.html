@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conversor WebP</title>
+  <meta name="description" content="Convierte y optimiza imágenes a WebP para la web. Todo se procesa en tu navegador con Python + WebAssembly.">
+  <meta name="theme-color" content="#0e0e10">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230e0e10'/><circle cx='16' cy='16' r='6' fill='%23f5c518'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1><span class="dot" aria-hidden="true"></span>Conversor WebP</h1>
+      <p class="subtitle">Optimiza tus imágenes para la web. Se procesan en tu navegador y no se suben a ningún servidor.</p>
+    </header>
+
+    <section class="settings" aria-label="Ajustes">
+      <label class="field">
+        <span class="field-label">Calidad <output id="quality-value">75</output></span>
+        <input id="quality" type="range" min="40" max="100" step="1" value="75">
+      </label>
+      <label class="field">
+        <span class="field-label">Ancho máximo</span>
+        <span class="input-suffix">
+          <input id="width" type="number" min="16" max="10000" step="1" value="1280" inputmode="numeric">
+          <span>px</span>
+        </span>
+      </label>
+    </section>
+
+    <label id="dropzone" class="dropzone is-loading" tabindex="0">
+      <input id="file-input" type="file" accept="image/*" multiple hidden>
+      <svg class="dropzone-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0l-4 4m4-4l4 4M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span id="dropzone-text" class="dropzone-text">Cargando motor de conversión…</span>
+      <span class="dropzone-hint">JPG, PNG, GIF, BMP, TIFF, WebP…</span>
+    </label>
+
+    <section id="results" class="results" hidden>
+      <div class="results-bar">
+        <span id="summary" class="summary"></span>
+        <div class="actions">
+          <button id="clear" class="btn btn-ghost" type="button">Limpiar</button>
+          <button id="download-all" class="btn btn-primary" type="button" disabled>Descargar todo (.zip)</button>
+        </div>
+      </div>
+      <ul id="file-list" class="file-list"></ul>
+    </section>
+  </main>
+
+  <template id="file-item">
+    <li class="file">
+      <div class="thumb"></div>
+      <div class="file-info">
+        <span class="file-name"></span>
+        <span class="file-meta"></span>
+      </div>
+      <a class="btn btn-ghost btn-small file-download" hidden>Descargar</a>
+    </li>
+  </template>
+</body>
+</html>

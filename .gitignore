@@ -1,0 +1,5 @@
+# Imágenes locales (entrada y salida del script)
+imagenes_*/
+
+__pycache__/
+*.pyc
